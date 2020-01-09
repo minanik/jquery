@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+<style>
+ul {
+  list-style: none;
+
+}
+ul li{
+    background-color: grey;
+    color: white;
+}
+
+.tab-switcher {
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 25px;
+}
+#allTabsContainer{
+    border-style: solid;
+    border-color: grey;
+}
+</style>
+    <ul>
+        <li class="tab-switcher" data-tab-index="0" tabindex="0">
+            Tab 1
+        </li>
+        <li class="tab-switcher" data-tab-index="1" tabindex="0">
+            Tab 2
+        </li>
+        <li class="tab-switcher" data-tab-index="2" tabindex="0">
+            Tab 3
+        </li>
+        <li class="tab-switcher" data-tab-index="3" tabindex="0">
+            Tab 4
+        </li>
+    </ul>
+    <div id="allTabsContainer">
+        <div class="tab-container" data-tab-index="0">
+           Nesto iz taba 1 
+        </div>
+        <div class="tab-container" data-tab-index="1" style="display:none;">
+            Nesto iz taba 2
+        </div>
+        <div class="tab-container" data-tab-index="2" style="display:none;">
+            Nesto iz taba 3 
+        </div>
+        <div class="tab-container" data-tab-index="3" style="display:none;">
+            Nesto iz taba 4
+        </div>
+    </div>
+
+<script>
+$(document).ready(function () {
+    var previousActiveTabIndex = 0;
+
+    $(".tab-switcher").on('click keypress', function (event) {
+
+        // event.which === 13 znaci da je enter pritisnut
+        if ((event.type === "keypress" && event.which === 13) || event.type === "click") {
+
+            var tabClicked = $(this).data("tab-index");
+
+            if(tabClicked != previousActiveTabIndex) {
+                $("#allTabsContainer .tab-container").each(function () {
+                    if($(this).data("tab-index") == tabClicked) {
+                        $(".tab-container").hide();
+                        $(this).show();
+                        previousActiveTabIndex = $(this).data("tab-index");
+                        return;
+                    }
+                });
+            }
+        }
+    });
+});
+</script>
+   </header>
+</body>
+</html> 

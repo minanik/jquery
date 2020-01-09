@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+<style>
+ ul{
+        padding: 0;
+        list-style: none;
+        background: #f2f2f2;
+    }
+    ul li{
+        display: inline-block;
+        position: relative;
+        line-height: 21px;
+        text-align: left;
+    }
+    ul li a{
+        display: block;
+        padding: 8px 25px;
+        color: #333;
+        text-decoration: none;
+    }
+    ul li a:hover{
+        color: rgb(248, 100, 100);
+        background: #939393;
+    }
+    ul li ul.dropdown-menu{
+        min-width: 100%; /* Set width of the dropdown */
+        background: #f2f2f2;
+        display: none;
+        position: absolute;
+        z-index: 999;
+        left: 0;
+    }
+    ul li ul.dropdown-menu li{
+        display: block;
+    }
+</style>
+<ul>
+    <li class="dropdown">
+        <a href="#">Meni &#9662;</a>
+        <ul class="dropdown-menu">
+            <li><a href="#">1. stavka</a></li>
+            <li><a href="#">2. stavka</a></li>
+            <li><a href="#">3. stavka</a></li>
+            <li><a href="#">4. stavka</a></li>
+            <li><a href="#">5. stavka</a></li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+$(document).ready(function(){
+        // Show hide popover
+        $(".dropdown").click(function(){
+            $(this).find(".dropdown-menu").slideToggle("fast");
+        });
+    });
+    $(document).on("click", function(event){
+        var $trigger = $(".dropdown");
+        if($trigger !== event.target && !$trigger.has(event.target).length){
+            $(".dropdown-menu").slideUp("fast");
+        }            
+    });
+</script>
+   </header>
+</body>
+</html> 
